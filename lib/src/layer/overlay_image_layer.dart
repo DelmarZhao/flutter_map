@@ -37,10 +37,9 @@ Future<ui.Image> _loadImage(img.ImageProvider imageProvider) async {
   void listener(img.ImageInfo frame, bool synchronousCall) {
     var image = frame.image;
     completer.complete(image);
-    stream.removeListener(listener);
   }
 
-  stream.addListener(listener);
+  stream.addListener(new ImageStreamListener(listener));
   return completer.future;
 }
 
